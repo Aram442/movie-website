@@ -32,6 +32,7 @@ h2 {
   font-weight: bold;
   cursor: pointer;
 }
-.button.active {
+button.active {
   background: rgb(65, 89, 168);
+  color: white;
 }

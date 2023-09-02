@@ -1,12 +1,13 @@
 import { useEffect, useState } from "react";
 import Movie from "./Movie";
 import Filter from "./Filter";
+import { motion } from "framer-motion";
 
 function App() {
   const [popular, setPopular] = useState([]); //popular = null ;
   const [filtered, setFiltered] = useState([]);
 
-  const [activeGenre, setActiveGenre] = useState(0);
+  const [activeGenre, setActiveGenre] = useState(0); //activeGenre = 0
   //Genre number meains: 28 = Action , 12 = Adventure , 16 = Animation , 35 = Comedy , 80 = Crime etc ....;
   //we can see the All genra in React devtools in Hooks section or porpse => movie ;
 
@@ -34,13 +35,13 @@ function App() {
         popular={popular}
         setFiltered={setFiltered}
         activeGenre={activeGenre}
-        setActiveGenre={setActiveGenre} 
+        setActiveGenre={setActiveGenre}
       />
-      <div className="popular-movies">
-        {popular.map((movie) => {
+      <motion.div layout className="popular-movies">
+        {filtered.map((movie) => {
           return <Movie key={movie.id} movie={movie} />; // key , movie propse
         })}
-      </div>
+      </motion.div>
     </div>
   );
 }
