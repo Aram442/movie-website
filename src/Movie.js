@@ -1,5 +1,5 @@
 import React from "react";
-function Movie({ movie, key }) {
+function Movie({ movie }) {
   // movie = propce boya dabet lyer Accessy bkayn.
   return (
     <div>
