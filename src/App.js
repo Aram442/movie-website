@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
+import Movie from "./Movie";
 
 function App() {
-  const [popular, setPopular] = useState([]);
+  const [popular, setPopular] = useState([]); //popular = null ;
 
   //Using useEffect to when the component gets renderd out  Run fetchPopular() fucntion.
   useEffect(() => {
@@ -16,12 +17,17 @@ function App() {
     //fetch henan
     const movies = await data.json();
     // after each thing we should find out if our link work or not => console.log(movies);
+    console.log(movies);
     setPopular(movies.results);
-  }; 
+  };
 
   return (
     <div className="App">
-      <h1>Hello world</h1>
+      <div className="popular-movies">
+        {popular.map((movie) => {
+          return <Movie key={movie.id} movie={movie} />; // key , movie propse 
+        })}
+      </div>
     </div>
   );
 }
