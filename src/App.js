@@ -4,6 +4,9 @@ import Filter from "./Filter";
 import { motion, AnimatePresence } from "framer-motion";
 
 function App() {
+  const apiKey = process.env.REACT_APP_MOVIEDB_API_KEY;
+  console.log(apiKey);
+
   const [popular, setPopular] = useState([]); //popular = null ;
   const [filtered, setFiltered] = useState([]);
 
@@ -19,7 +22,7 @@ function App() {
   const fetchPopular = async () => {
     // I used Async becuase I used External Link or API
     const data = await fetch(
-      "https://api.themoviedb.org/3/movie/popular?api_key=0f898ec93930a149724e4e4c3c310af8"
+      `https://api.themoviedb.org/3/movie/popular?api_key=${apiKey}`
     );
     //fetch = henan
     const movies = await data.json();
@@ -39,9 +42,13 @@ function App() {
       />
       <motion.div layout className="popular-movies">
         <AnimatePresence>
-          {filtered.map((movie) => {
-            return <Movie key={movie.id} movie={movie} />; // key , movie propse
-          })}
+          {filtered ? (
+            filtered.map((movie) => {
+              return <Movie key={movie.id} movie={movie} />;
+            })
+          ) : (
+            <p>Loading...</p> // You can add a loading indicator here
+          )}
         </AnimatePresence>
       </motion.div>
     </div>
